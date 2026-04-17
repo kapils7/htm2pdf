@@ -21,12 +21,24 @@ export async function generatePdf(options: PdfOptions): Promise<Buffer> {
   // Configures sparticuz/chromium to use the local Chrome if needed for local test,
   // or fetches the binary when running on serverless
   const isLocal = process.env.NODE_ENV === 'development';
+  /*
+    const browser = await puppeteer.launch({
+      args: isLocal ? ['--no-sandbox', '--disable-setuid-sandbox'] : chromium.args,
+      defaultViewport: chromium.defaultViewport,
+      executablePath: isLocal ? 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe' : await chromium.executablePath(),
+      headless: isLocal ? true : chromium.headless,
+    });
+  */
 
   const browser = await puppeteer.launch({
     args: isLocal ? ['--no-sandbox', '--disable-setuid-sandbox'] : chromium.args,
-    defaultViewport: chromium.defaultViewport,
-    executablePath: isLocal ? 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe' : await chromium.executablePath(),
-    headless: isLocal ? true : chromium.headless,
+    // Hardcode this for both local and production to satisfy TypeScript
+    defaultViewport: { width: 1280, height: 720 },
+    executablePath: isLocal
+      ? 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
+      : await chromium.executablePath(),
+    // Hardcode headless to true to avoid the chromium.headless type error
+    headless: true,
   });
 
   const page = await browser.newPage();
