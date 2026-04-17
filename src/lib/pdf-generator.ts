@@ -3,7 +3,8 @@ import chromium from '@sparticuz/chromium';
 
 // Disable the download in local development if you have Chrome installed
 // Local Dev: you can set this to false and provide the executablePath manually
-chromium.setHeadlessMode = true;
+//chromium.setHeadlessMode = true;
+
 
 interface PdfOptions {
   html?: string;
@@ -26,7 +27,7 @@ export async function generatePdf(options: PdfOptions): Promise<Buffer> {
   
   // Set the content or navigate to URL
   if (options.url) {
-    await page.goto(options.url, { waitUntil: 'networkidle0' });
+    await page.goto(options.url, { waitUntil: 'networkidle2' });
   } else if (options.html) {
     await page.setContent(options.html, { waitUntil: 'networkidle0' });
   }
