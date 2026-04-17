@@ -9,7 +9,7 @@ const browser = await puppeteer.launch({
   args: chromium.args,
   defaultViewport: { width: 1280, height: 720 },
   executablePath: await chromium.executablePath(),
-  headless: chromium.headless, // This replaces 'setHeadlessMode'
+  headless: true, // This replaces 'setHeadlessMode'
 });
 
 interface PdfOptions {
