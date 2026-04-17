@@ -4,10 +4,6 @@ import chromium from '@sparticuz/chromium';
 
 // Disable the download in local development if you have Chrome installed
 // Local Dev: you can set this to false and provide the executablePath manually
-<<<<<<< HEAD
-//chromium.setHeadlessMode = true;
-
-=======
 
 const browser = await puppeteer.launch({
   args: chromium.args,
@@ -15,7 +11,6 @@ const browser = await puppeteer.launch({
   executablePath: await chromium.executablePath(),
   headless: chromium.headless, // This replaces 'setHeadlessMode'
 });
->>>>>>> 669b0168a1de10b2c9857aa3f1a98b4b8b2ab819
 
 interface PdfOptions {
   html?: string;
