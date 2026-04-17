@@ -47,3 +47,4 @@ export async function generatePdf(options: PdfOptions): Promise<Buffer> {
   await browser.close();
   return Buffer.from(pdfBuffer);
 }
+// Force build update
