@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import { supabase } from './lib/supabase'
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   // Only apply to our actual API endpoints
   if (request.nextUrl.pathname.startsWith('/api/v1/')) {
     const apiKey = request.headers.get('x-api-key')
